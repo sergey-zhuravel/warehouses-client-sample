@@ -1,5 +1,19 @@
 <div class="jumbotron text-center">
   <h1>List of Warehouses</h1>
   <hr/>
-  
+  <ul *ngIf="warehouses && warehouses.length">
+    <li *ngFor="let warehouse of warehouses">
+      {{warehouse.name}}
+       <ul>
+         <li *ngFor="let category of warehouse.categories"> 
+           <app-category [category]="category"></app-category>
+             <ul> 
+               <li *ngFor="let product of warehouse.products"> 
+                 {{product.name}}
+                 </li>
+             </ul>
+         </li>
+       </ul>
+    </li>
+  </ul>
 </div>
