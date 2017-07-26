@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import {Category} from "../../models/category";
 import {Product} from "../../models/product";
 
@@ -10,6 +10,8 @@ import {Product} from "../../models/product";
 export class CategoryComponent implements OnInit {
   @Input() category: Category;
   @Input() products: Product[];
+  @Input() selected: Category;
+  @Output() selectedChange: EventEmitter<Category> = new EventEmitter();
   constructor() { }
 
   ngOnInit() {

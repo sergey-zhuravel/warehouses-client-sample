@@ -1,3 +1,3 @@
-<p>
-  {{product.name}}
-</p>
+<li [class.active]="selected == product">
+  <a (click)="selectedChange.next(product)">{{index+1}}. {{product.name}}</a>
+</li>

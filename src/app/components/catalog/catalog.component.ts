@@ -15,6 +15,9 @@ import {Warehouse} from '../../models/warehouse';
 export class CatalogComponent implements OnInit {
 
   warehouses: Warehouse[];
+  selectedWarehouse: Warehouse;
+  selectedCategory: Category;
+  selectedProduct: Product;
 
   constructor(private dataService: DataService) { }
 
@@ -27,6 +30,9 @@ export class CatalogComponent implements OnInit {
       console.log(data);
       //update state with data from the service
       this.createWarehousesArray(data);
+      if (this.warehouses && this.warehouses.length > 0) {
+        this.selectedWarehouse = this.warehouses[0];
+      }
     }, err => {
       console.log(err);
       return false;

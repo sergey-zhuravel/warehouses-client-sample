@@ -1,10 +1,5 @@
 <p>
-  {{category.name}}
+  
+  <a (click)="selectedChange.next(category)">{{category.name}}</a>
 </p>
 
-<ul>
-  <li *ngFor="let product of products">
-    <app-product [product]="product" *ngIf="product.category_id === category.id"> </app-product>
-  </li>
-  <li (click)="addNewProduct();">Add new product</li>
-</ul>

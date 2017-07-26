@@ -15,7 +15,16 @@ export class DataService {
       "id": 1,
       "categories":[{"name":"Computers", "id": 1}, {"name":"Tables", "id": 2}],
       "products":[
-            {"id":1, "name":"Sumsung", "category_id":1, "price":5, "count":10},
+            {"id":1, "name":"Samsung", "category_id":1, "price":5, "count":10},
+            {"id":2, "name":"HP", "category_id":1, "price":4, "count":3}
+          ]
+    },
+    {
+      "name":"Warehouse2",
+      "id": 2,
+      "categories":[{"name":"Computers", "id": 1}, {"name":"Tables", "id": 2}],
+      "products":[
+            {"id":1, "name":"Samsung", "category_id":1, "price":5, "count":10},
             {"id":2, "name":"HP", "category_id":1, "price":4, "count":3}
           ]
     }];
