@@ -6,13 +6,9 @@
       {{warehouse.name}}
        <ul>
          <li *ngFor="let category of warehouse.categories"> 
-           <app-category [category]="category"></app-category>
-             <ul> 
-               <li *ngFor="let product of warehouse.products"> 
-                 {{product.name}}
-                 </li>
-             </ul>
+           <app-category [category]="category" [products]="warehouse.products"></app-category>
          </li>
+         <li>Add new category...</li>
        </ul>
     </li>
   </ul>

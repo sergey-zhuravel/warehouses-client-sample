@@ -1,3 +1,10 @@
 <p>
   {{category.name}}
 </p>
+
+<ul>
+  <li *ngFor="let product of products">
+    <app-product [product]="product" *ngIf="product.category_id === category.id"> </app-product>
+  </li>
+  <li (click)="addNewProduct();">Add new product</li>
+</ul>

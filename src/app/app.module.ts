@@ -10,6 +10,7 @@ import { CatalogComponent } from './components/catalog/catalog.component';
 
 import {DataService} from './services/data.service';
 import { CategoryComponent } from './components/category/category.component';
+import { ProductComponent } from './components/product/product.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -24,7 +25,8 @@ const appRoutes: Routes = [
     NavbarComponent,
     HomeComponent,
     CatalogComponent,
-    CategoryComponent
+    CategoryComponent,
+    ProductComponent
   ],
   imports: [
     BrowserModule,
