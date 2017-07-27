@@ -11,7 +11,7 @@
           <h3 class="panel-title">Warehouse Details</h3>
         </div>
           <ul *ngIf="warehouses && warehouses.length">
-            <li *ngFor="let warehouse of warehouses">
+            <li *ngFor="let warehouse of warehouses" class="text-danger" >
               {{warehouse.name}}
               <ul>
                 <li *ngFor="let category of warehouse.categories">
