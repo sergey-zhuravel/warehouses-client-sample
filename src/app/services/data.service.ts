@@ -5,6 +5,7 @@ import 'rxjs/add/operator/map';
 import {Observable} from 'rxjs/Rx';
 
 import {Product} from "../models/product";
+import {Category} from "../models/category";
 
 @Injectable()
 export class DataService {
@@ -25,7 +26,6 @@ export class DataService {
   //if id is 0 - it's new product, so use post
   //if id is not 0 - upate existing product in the DB
   saveProduct(product: Product) {
-    console.log(product);
     let headers = new Headers();
       headers.append('Content-Type', 'application/json');
     
@@ -34,6 +34,19 @@ export class DataService {
       .map(res => res.json());
     } else {
       return this.http.put(this.apiURL + 'product/' + product.ProductId, product, {headers: headers})
+      .map(res => res.json());
+    }
+  }
+
+  saveCategory(category: Category) {
+    let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+    console.log(category);
+    if (category.CategoryId === 0) {
+      return this.http.post(this.apiURL + 'category', category, {headers: headers})
+      .map(res => res.json());
+    } else {
+      return this.http.put(this.apiURL + 'category/' + category.CategoryId, category, {headers: headers})
       .map(res => res.json());
     }
   }

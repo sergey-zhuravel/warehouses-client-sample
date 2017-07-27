@@ -59,7 +59,7 @@ export class CatalogComponent implements OnInit {
     this.selectedCategory = null;
     this.selectedProduct = null;
     console.log(wid, cid);
-    let warehouse = this.warehouses.filter(w => w.id === wid)[0];
+    let warehouse = this.warehouses.filter(w => w.WarehouseId === wid)[0];
     let product = new Product({ProductName: "Product", ProductId: 0, Store: {StoreId:0, Price: 0, Count: 0}}, this.selectedCategory);
     this.selectedProduct = product;
     warehouse.products.push(product);
@@ -69,16 +69,21 @@ export class CatalogComponent implements OnInit {
   addNewCategory(wid) {
     this.selectedCategory = null;
     this.selectedProduct = null;
-    let warehouse = this.warehouses.filter(w => w.id === wid)[0];
+    let warehouse = this.warehouses.filter(w => w.WarehouseId === wid)[0];
+    console.log(wid);
     this.selectedWarehouse = warehouse;
-    let category = new Category({id:0, name: "NewCategory"});
+    let category = new Category({CategoryId:0, CategoryName: "NewCategory",
+         Warehouse: new Warehouse({WarehouseId: warehouse.WarehouseId, WarehouseName: warehouse.WarehouseName})});
+    console.log("category: ", category);
+    
     this.selectedWarehouse.categories.push(category);
     this.newCategory = true;
     this.selectedCategory = category;
   }
 
    saveNewCategory() {
-     this.selectedCategory.save(this.selectedWarehouse.id);
+     console.log("category: ", this.selectedCategory);
+     this.dataService.saveCategory(this.selectedCategory).subscribe(data => console.log(data));;
      this.newCategory = false;
    }
 

@@ -2,7 +2,7 @@
   <h1>List of Warehouses</h1>
   <hr/>
   <ul class="nav nav-pills">
-    <li *ngFor="let warehouse of warehouses">{{warehouse.name}} </li>
+    <li *ngFor="let warehouse of warehouses">{{warehouse.WarehouseName}} </li>
   </ul>
   <div class="row">
     <div class="col-xs-4">
@@ -12,7 +12,7 @@
         </div>
           <ul *ngIf="warehouses && warehouses.length">
             <li *ngFor="let warehouse of warehouses" class="text-danger" >
-              {{warehouse.name}}
+              {{warehouse.WarehouseName}}
               <ul>
                 <li *ngFor="let category of warehouse.categories">
                   <app-category [category]="category" [products]="warehouse.products" [(selected)]="selectedCategory"></app-category>
@@ -21,12 +21,12 @@
                           <app-product [product]="product" [index]="i"  [(selected)]="selectedProduct"  *ngIf="product.category_id === category.id"> </app-product>
                         
                       </ng-container>
-                      <li (click)="addNewProduct(warehouse.id, category.id);" class="btn btn-link">
+                      <li (click)="addNewProduct(warehouse.WarehouseId, category.CategoryId);" class="btn btn-link">
                         <i class="fa fa-plus-square-o" aria-hidden="true"></i> Add new product
                       </li>
                     </ul>
                 </li>
-                <li  (click)="addNewCategory(warehouse.id);" class="btn btn-link"> 
+                <li  (click)="addNewCategory(warehouse.WarehouseId);" class="btn btn-link"> 
                   <i class="fa fa-plus-circle" aria-hidden="true"></i> Add new category
                 </li>
               </ul>
