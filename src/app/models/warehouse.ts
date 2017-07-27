@@ -8,20 +8,22 @@ export class Warehouse {
   categories: Category[];  
 
   constructor(warehouseInfo: any) {
-    this.name = warehouseInfo['name'];
-    this.id = warehouseInfo['id'];
+    this.name = warehouseInfo['WarehouseName'];
+    this.id = warehouseInfo['WarehouseId'];
 
     this.categories = new Array();
     this.products = new Array();
 
     //create categories
-    for (const category of warehouseInfo['categories']) {
+    for (const category of warehouseInfo['Categories']) {
           this.categories.push(new Category(category));
+
+          //create products
+          for (const product of category['Products']) {
+              this.products.push(new Product(product, category));
+          }
     }
 
-    //create products
-    for (const product of warehouseInfo['products']) {
-        this.products.push(new Product(product));
-    }
+    
   }
 }

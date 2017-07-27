@@ -4,6 +4,8 @@ import {Http, Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
 import {Observable} from 'rxjs/Rx';
 
+import {Product} from "../models/product";
+
 @Injectable()
 export class DataService {
 
@@ -13,28 +15,26 @@ export class DataService {
 
   constructor(private http: Http) { }
 
+  //make request to the API to get all warehouses
   getAllWarehouses() {
-    let data = [{
-      "name":"Warehouse1",
-      "id": 1,
-      "categories":[{"name":"Computers", "id": 1}, {"name":"Tables", "id": 2}],
-      "products":[
-            {"id":1, "name":"Samsung", "category_id":1, "price":5, "count":10},
-            {"id":2, "name":"HP", "category_id":1, "price":4, "count":3}
-          ]
-    },
-    {
-      "name":"Warehouse2",
-      "id": 2,
-      "categories":[{"name":"Computers", "id": 1}, {"name":"Tables", "id": 2}],
-      "products":[
-            {"id":1, "name":"Samsung", "category_id":1, "price":5, "count":10},
-            {"id":2, "name":"HP", "category_id":1, "price":4, "count":3}
-          ]
-    }];
-    //For tests without API server - uncomment mocl data return and comment request to the API.
-    //return  Observable.of(data); //mock data
     return this.http.get(this.apiURL + 'warehouse')
       .map(res => res.json());
+  }
+
+  //method to save one product
+  //if id is 0 - it's new product, so use post
+  //if id is not 0 - upate existing product in the DB
+  saveProduct(product: Product) {
+    console.log(product);
+    let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+    
+    if (product.ProductId === 0) {
+      return this.http.post(this.apiURL + 'product', product, {headers: headers})
+      .map(res => res.json());
+    } else {
+      return this.http.put(this.apiURL + 'product/' + product.ProductId, product, {headers: headers})
+      .map(res => res.json());
+    }
   }
 }

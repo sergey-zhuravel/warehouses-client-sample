@@ -1,13 +1,13 @@
 export class Category {
-    id: number;
-    name: string;
+    CategoryId: number;
+    CategoryName: string;
 
     constructor(categoryInfo: any) {
-        this.name = categoryInfo.name;
-        this.id = categoryInfo.id;
+        this.CategoryName = categoryInfo.CategoryName;
+        this.CategoryId = categoryInfo.CategoryId;
     }
     save(warehouseid) {
         //ToDo: implemented http request to save product
-        console.log(this.name);
+        console.log(this.CategoryName);
     }
 }

@@ -1,22 +1,21 @@
 import {Category} from "./category";
 
+interface IStore {
+    StoreId: number;
+    Count: number;
+    Price: number;
+}
+
 export class Product {
-    id: number;
-    name: string;
-    price: number;
-    count: number;
-    category_id: number;
+    ProductId: number;
+    ProductName: string;
+    Store: IStore;
+    Category: Category;
 
-    constructor(productInfo: any) {
-        this.name = productInfo.name;
-        this.id = productInfo.id;
-        this.price = productInfo.price;
-        this.count = productInfo.count;
-        this.category_id = productInfo.category_id;
-    }
-
-    save() {
-        //ToDo: implement http request to save product
-        console.log(this.name, this.price, this.count);
+    constructor(productInfo: any, category: Category) {
+        this.ProductName = productInfo.ProductName;
+        this.ProductId = productInfo.ProductId;
+        this.Store = {StoreId: productInfo['Store'].StoreId, Price: productInfo['Store'].Price, Count: productInfo['Store'].Count};
+        this.Category = category;
     }
 }

@@ -29,7 +29,6 @@ export class CatalogComponent implements OnInit {
 
     //get data from the service
     this.dataService.getAllWarehouses().subscribe(data => {
-      console.log(data);
       //update state with data from the service
       this.createWarehousesArray(data);
       if (this.warehouses && this.warehouses.length > 0) {
@@ -52,7 +51,7 @@ export class CatalogComponent implements OnInit {
 
   //handle inputs value change
   productChange(event) {
-    this.selectedProduct.save();
+    this.dataService.saveProduct(this.selectedProduct).subscribe(data => console.log(data));
     this.editMode = false;
   }
 
@@ -61,7 +60,7 @@ export class CatalogComponent implements OnInit {
     this.selectedProduct = null;
     console.log(wid, cid);
     let warehouse = this.warehouses.filter(w => w.id === wid)[0];
-    let product = new Product({name: "Product", id: 0, price: 0, count:0, category_id: cid });
+    let product = new Product({ProductName: "Product", ProductId: 0, Store: {StoreId:0, Price: 0, Count: 0}}, this.selectedCategory);
     this.selectedProduct = product;
     warehouse.products.push(product);
     this.editMode = true;
