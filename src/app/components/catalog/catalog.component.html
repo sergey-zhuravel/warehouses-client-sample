@@ -21,7 +21,9 @@
                           <app-product [product]="product" [index]="i"  [(selected)]="selectedProduct"  *ngIf="product.category_id === category.id"> </app-product>
                         
                       </ng-container>
-                      <li (click)="addNewProduct(warehouse.id, category.id);">Add new product</li>
+                      <li (click)="addNewProduct(warehouse.id, category.id);" class="btn btn-link">
+                        <i class="fa fa-plus-square-o" aria-hidden="true"></i> Add new product
+                      </li>
                     </ul>
                 </li>
                 <li  (click)="addNewCategory();">Add new category...</li>
