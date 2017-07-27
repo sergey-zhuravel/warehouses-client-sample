@@ -19,6 +19,7 @@ export class CatalogComponent implements OnInit {
   selectedCategory: Category;
   selectedProduct: Product;
   editMode: boolean = false;
+  newCategory: boolean = false;
 
   constructor(private dataService: DataService) { }
 
@@ -51,16 +52,35 @@ export class CatalogComponent implements OnInit {
   //handle inputs value change
   productChange(event) {
     this.selectedProduct.save();
+    this.editMode = false;
   }
 
   addNewProduct(wid, cid) {
     this.selectedCategory = null;
     this.selectedProduct = null;
     console.log(wid, cid);
-    let warehouse = this.warehouses.filter(w => w.id === wid);
+    let warehouse = this.warehouses.filter(w => w.id === wid)[0];
     let product = new Product({name: "Product", id: 0, price: 0, count:0, category_id: cid });
     this.selectedProduct = product;
-    console.log(warehouse);
+    warehouse.products.push(product);
+    this.editMode = true;
   }
+
+  addNewCategory(wid) {
+    this.selectedCategory = null;
+    this.selectedProduct = null;
+    let warehouse = this.warehouses.filter(w => w.id === wid)[0];
+    this.selectedWarehouse = warehouse;
+    let category = new Category({id:0, name: "NewCategory"});
+    this.selectedWarehouse.categories.push(category);
+    this.newCategory = true;
+    this.selectedCategory = category;
+  }
+
+   saveNewCategory() {
+     this.selectedCategory.save(this.selectedWarehouse.id);
+     this.newCategory = false;
+   }
+
 
 }

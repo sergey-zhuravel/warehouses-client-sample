@@ -6,7 +6,7 @@ export class Category {
         this.name = categoryInfo.name;
         this.id = categoryInfo.id;
     }
-    save() {
+    save(warehouseid) {
         //ToDo: implemented http request to save product
         console.log(this.name);
     }

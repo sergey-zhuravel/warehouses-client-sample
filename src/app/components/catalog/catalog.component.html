@@ -26,7 +26,7 @@
                       </li>
                     </ul>
                 </li>
-                <li  (click)="addNewCategory();" class="btn btn-link"> 
+                <li  (click)="addNewCategory(warehouse.id);" class="btn btn-link"> 
                   <i class="fa fa-plus-circle" aria-hidden="true"></i> Add new category
                 </li>
               </ul>
@@ -42,15 +42,21 @@
         </div>
         <div *ngIf="selectedProduct" class="panel-heading">
           <h3 class="text-primary">Product details:</h3>
-            <p>Product name: {{selectedProduct.name}}</p>
-            <p>Product price: <input type="text" class="form-control" [(ngModel)]="selectedProduct.price" (keyup)="productChange($event)" /></p>
-            <p>Product quantity: <input type="text" class="form-control" [(ngModel)]="selectedProduct.count" (keyup)="productChange($event)" /></p>
+            <p>Product name: <input type="text" class="form-control" [(ngModel)]="selectedProduct.name" (keyup)="editMode = true" /></p>
+            <p>Product price: <input type="text" class="form-control" [(ngModel)]="selectedProduct.price" (keyup)="editMode = true" /></p>
+            <p>Product quantity: <input type="text" class="form-control" [(ngModel)]="selectedProduct.count" (keyup)="editMode = true" /></p>
+            <p *ngIf="editMode"><i class="btn btn-success" (click)="productChange($event)"> Save </i>
         </div>
           <div *ngIf="selectedCategory" class="panel-heading">
             <h3 class="text-primary">Category products:</h3>
             <ng-container *ngFor="let product of selectedWarehouse.products">
               <p *ngIf="product.category_id === selectedCategory.id" > {{product.name}}</p>
             </ng-container>
+          </div>
+          <div *ngIf="newCategory" class="panel-heading">
+              <h3 class="text-primary">New category:</h3>
+              <p><input type="text" class="form-control" [(ngModel)]="selectedCategory.name" (keyup)="newCategory = true" /></p>
+              <p><i class="btn btn-success" (click)="saveNewCategory($event)"> Save </i>
           </div>
       </div>
     </div>
