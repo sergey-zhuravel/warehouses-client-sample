@@ -39,7 +39,8 @@
         <div *ngIf="selectedProduct" class="panel-heading">
           <h3 class="text-primary">Product details:</h3>
             <p>Product name: {{selectedProduct.name}}</p>
-            <p>Product price: {{selectedProduct.price}}</p>
+            <p>Product price: <input type="text" class="form-control" [(ngModel)]="selectedProduct.price" (keyup)="productChange($event)" /></p>
+            <p>Product quantity: <input type="text" class="form-control" [(ngModel)]="selectedProduct.count" (keyup)="productChange($event)" /></p>
         </div>
           <div *ngIf="selectedCategory" class="panel-heading">
             <h3 class="text-primary">Categy products:</h3>

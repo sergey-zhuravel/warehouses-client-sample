@@ -18,6 +18,7 @@ export class CatalogComponent implements OnInit {
   selectedWarehouse: Warehouse;
   selectedCategory: Category;
   selectedProduct: Product;
+  editMode: boolean = false;
 
   constructor(private dataService: DataService) { }
 
@@ -47,6 +48,11 @@ export class CatalogComponent implements OnInit {
         this.warehouses.push(warehouse);
         console.log(this.warehouses);
     }
+  }
+
+  //handle inputs value change
+  productChange(event) {
+    this.selectedProduct.save();
   }
 
 }
