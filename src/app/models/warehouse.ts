@@ -21,7 +21,6 @@ export class Warehouse {
 
     //create products
     for (const product of warehouseInfo['products']) {
-        console.log(product);
         this.products.push(new Product(product));
     }
   }

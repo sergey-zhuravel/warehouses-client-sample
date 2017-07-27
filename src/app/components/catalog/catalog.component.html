@@ -26,7 +26,9 @@
                       </li>
                     </ul>
                 </li>
-                <li  (click)="addNewCategory();">Add new category...</li>
+                <li  (click)="addNewCategory();" class="btn btn-link"> 
+                  <i class="fa fa-plus-circle" aria-hidden="true"></i> Add new category
+                </li>
               </ul>
             </li>
           </ul>
@@ -45,7 +47,7 @@
             <p>Product quantity: <input type="text" class="form-control" [(ngModel)]="selectedProduct.count" (keyup)="productChange($event)" /></p>
         </div>
           <div *ngIf="selectedCategory" class="panel-heading">
-            <h3 class="text-primary">Categy products:</h3>
+            <h3 class="text-primary">Category products:</h3>
             <ng-container *ngFor="let product of selectedWarehouse.products">
               <p *ngIf="product.category_id === selectedCategory.id" > {{product.name}}</p>
             </ng-container>

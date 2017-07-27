@@ -28,7 +28,6 @@ export class CatalogComponent implements OnInit {
 
     //get data from the service
     this.dataService.getAllWarehouses().subscribe(data => {
-      console.log(data);
       //update state with data from the service
       this.createWarehousesArray(data);
       if (this.warehouses && this.warehouses.length > 0) {
@@ -46,13 +45,22 @@ export class CatalogComponent implements OnInit {
     for (const wdata of data) {
         warehouse = new Warehouse(wdata);
         this.warehouses.push(warehouse);
-        console.log(this.warehouses);
     }
   }
 
   //handle inputs value change
   productChange(event) {
     this.selectedProduct.save();
+  }
+
+  addNewProduct(wid, cid) {
+    this.selectedCategory = null;
+    this.selectedProduct = null;
+    console.log(wid, cid);
+    let warehouse = this.warehouses.filter(w => w.id === wid);
+    let product = new Product({name: "Product", id: 0, price: 0, count:0, category_id: cid });
+    this.selectedProduct = product;
+    console.log(warehouse);
   }
 
 }
