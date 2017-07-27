@@ -29,6 +29,7 @@ export class CatalogComponent implements OnInit {
 
     //get data from the service
     this.dataService.getAllWarehouses().subscribe(data => {
+      console.log(data);
       //update state with data from the service
       this.createWarehousesArray(data);
       if (this.warehouses && this.warehouses.length > 0) {

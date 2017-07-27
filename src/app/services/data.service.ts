@@ -7,6 +7,10 @@ import {Observable} from 'rxjs/Rx';
 @Injectable()
 export class DataService {
 
+  //Set API url for API requests.
+  //ToDo: can be moved to config file
+  apiURL:string = "http://localhost:42830/api/";
+
   constructor(private http: Http) { }
 
   getAllWarehouses() {
@@ -28,8 +32,9 @@ export class DataService {
             {"id":2, "name":"HP", "category_id":1, "price":4, "count":3}
           ]
     }];
-    return  Observable.of(data); //mock data
-    //return this.http.get('http://localhost:3003/warehouse')
-      //.map(res => res.json());
+    //For tests without API server - uncomment mocl data return and comment request to the API.
+    //return  Observable.of(data); //mock data
+    return this.http.get(this.apiURL + 'warehouse')
+      .map(res => res.json());
   }
 }
