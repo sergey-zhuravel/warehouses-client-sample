@@ -33,7 +33,6 @@ export class CatalogComponent implements OnInit {
       this.createWarehousesArray(data);
       if (this.warehouses && this.warehouses.length > 0) {
         this.selectedWarehouse = this.warehouses[0];
-        console.log(this.selectedWarehouse)
       }
     }, err => {
       console.log(err);
@@ -52,8 +51,6 @@ export class CatalogComponent implements OnInit {
 
   //handle product change saving
   productChangeSave(event) {
-    console.log('product: ', this.selectedProduct);
-    //if (this.selectedProduct && this.selectedProduct.)
     this.dataService.saveProduct(this.selectedProduct).subscribe(data => console.log(data));
     this.editMode = false;
   }

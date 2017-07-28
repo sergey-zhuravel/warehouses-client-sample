@@ -28,7 +28,6 @@ export class Warehouse {
               categoryTotalCost += product.Store.Price * product.Store.Count;
           }
           newCategory.TotalCost = categoryTotalCost;
-          console.log(newCategory);
           this.categories.push(newCategory);
           
       }
