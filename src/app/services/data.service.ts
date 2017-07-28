@@ -38,10 +38,10 @@ export class DataService {
     }
   }
 
+  //save category on the db server
   saveCategory(category: Category) {
     let headers = new Headers();
       headers.append('Content-Type', 'application/json');
-    console.log(category);
     if (category.CategoryId === 0) {
       return this.http.post(this.apiURL + 'category', category, {headers: headers})
       .map(res => res.json());

@@ -33,6 +33,7 @@ export class CatalogComponent implements OnInit {
       this.createWarehousesArray(data);
       if (this.warehouses && this.warehouses.length > 0) {
         this.selectedWarehouse = this.warehouses[0];
+        console.log(this.selectedWarehouse)
       }
     }, err => {
       console.log(err);
@@ -49,23 +50,27 @@ export class CatalogComponent implements OnInit {
     }
   }
 
-  //handle inputs value change
-  productChange(event) {
+  //handle product change saving
+  productChangeSave(event) {
     this.dataService.saveProduct(this.selectedProduct).subscribe(data => console.log(data));
     this.editMode = false;
   }
 
+  //add new product into collection to show it for editing
   addNewProduct(wid, cid) {
     this.selectedCategory = null;
     this.selectedProduct = null;
-    console.log(wid, cid);
+    //find warehouse  and category using warehouse id and category id
     let warehouse = this.warehouses.filter(w => w.WarehouseId === wid)[0];
-    let product = new Product({ProductName: "Product", ProductId: 0, Store: {StoreId:0, Price: 0, Count: 0}}, this.selectedCategory);
+    let category = new Category({CategoryId: cid, CategoryName: null, Warehouse: null});
+    //create new product object
+    let product = new Product({ProductName: "Product", ProductId: 0, Store: {StoreId:0, Price: 0, Count: 0}, Category: category});
     this.selectedProduct = product;
     warehouse.products.push(product);
     this.editMode = true;
   }
 
+  //create new category object and add it to collection
   addNewCategory(wid) {
     this.selectedCategory = null;
     this.selectedProduct = null;
@@ -74,15 +79,14 @@ export class CatalogComponent implements OnInit {
     this.selectedWarehouse = warehouse;
     let category = new Category({CategoryId:0, CategoryName: "NewCategory",
          Warehouse: new Warehouse({WarehouseId: warehouse.WarehouseId, WarehouseName: warehouse.WarehouseName})});
-    console.log("category: ", category);
     
     this.selectedWarehouse.categories.push(category);
     this.newCategory = true;
     this.selectedCategory = category;
   }
 
+   //save new category in DB
    saveNewCategory() {
-     console.log("category: ", this.selectedCategory);
      this.dataService.saveCategory(this.selectedCategory).subscribe(data => console.log(data));;
      this.newCategory = false;
    }

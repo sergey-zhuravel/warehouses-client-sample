@@ -18,8 +18,7 @@
                   <app-category [category]="category" [products]="warehouse.products" [(selected)]="selectedCategory"></app-category>
                     <ul class="nav nav-pills nav-stacked">
                       <ng-container  *ngFor="let product of warehouse.products; let i = index">
-                          <app-product [product]="product" [index]="i"  [(selected)]="selectedProduct"  *ngIf="product.category_id === category.id"> </app-product>
-                        
+                          <app-product [product]="product" [index]="i"  [(selected)]="selectedProduct"  *ngIf="product.Category.CategoryId === category.CategoryId"> </app-product>
                       </ng-container>
                       <li (click)="addNewProduct(warehouse.WarehouseId, category.CategoryId);" class="btn btn-link">
                         <i class="fa fa-plus-square-o" aria-hidden="true"></i> Add new product
@@ -45,7 +44,7 @@
             <p>Product name: <input type="text" class="form-control" [(ngModel)]="selectedProduct.ProductName" (keyup)="editMode = true" /></p>
             <p>Product price: <input type="text" class="form-control" [(ngModel)]="selectedProduct.Store.Price" (keyup)="editMode = true" /></p>
             <p>Product quantity: <input type="text" class="form-control" [(ngModel)]="selectedProduct.Store.Count" (keyup)="editMode = true" /></p>
-            <p *ngIf="editMode"><i class="btn btn-success" (click)="productChange($event)"> Save </i>
+            <p *ngIf="editMode"><i class="btn btn-success" (click)="productChangeSave($event)"> Save </i>
         </div>
           <div *ngIf="selectedCategory" class="panel-heading">
             <h3 class="text-primary">Category products:</h3>
