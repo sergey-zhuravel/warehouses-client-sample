@@ -7,12 +7,16 @@ npm init
 ng serve --open
 ```
 
-What can be improved: 
+>Web API should be stated on address - `http://localhost:42830/api/`
+
+**What can be improved**: 
 1. Add state management using redux pattern. 
 2. Break up the Catalog component into more smaller components: WarehouseDetails, ProductDetails, CategoryDetails, CategoryComponent, etc.
 3. Add linting witn ESLint.
 4. Implement menu of warehouses that we can select.
 5. Add validation service to validate forms data.
+6. Move API URL variable to Config file.
+7. Add more tests.
 
 ---
 Standard documentation
