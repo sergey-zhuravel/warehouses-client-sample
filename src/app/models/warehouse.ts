@@ -19,16 +19,27 @@ export class Warehouse {
     //create categories
     if (warehouseInfo['Categories'] && warehouseInfo['Categories'].length) {
       for (const category of warehouseInfo['Categories']) {
-          this.categories.push(new Category(Object.assign(category, {Warehouse:{WarehouseId: this.WarehouseId}})));
-
+          let newCategory = new Category(Object.assign(category, {Warehouse:{WarehouseId: this.WarehouseId}}));
+          
+          let categoryTotalCost = 0;
           //create products
           for (const product of category['Products']) {
               this.products.push(new Product(Object.assign(product, {Category: category})));
+              categoryTotalCost += product.Store.Price * product.Store.Count;
           }
+          newCategory.TotalCost = categoryTotalCost;
+          console.log(newCategory);
+          this.categories.push(newCategory);
+          
       }
     }
     
+  }
 
-    
+  //get total count of products in currect warehouse
+  getTotalProductsCost() {
+    let sum: number = 0;
+    this.products.forEach(product => sum += product.Store.Price * product.Store.Count);
+    return sum;
   }
 }

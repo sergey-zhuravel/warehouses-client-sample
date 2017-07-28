@@ -52,6 +52,8 @@ export class CatalogComponent implements OnInit {
 
   //handle product change saving
   productChangeSave(event) {
+    console.log('product: ', this.selectedProduct);
+    //if (this.selectedProduct && this.selectedProduct.)
     this.dataService.saveProduct(this.selectedProduct).subscribe(data => console.log(data));
     this.editMode = false;
   }

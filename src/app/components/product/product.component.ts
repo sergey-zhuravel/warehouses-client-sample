@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import {Product} from "../../models/product";
+import {Category} from "../../models/category";
 
 
 @Component({
@@ -16,6 +17,12 @@ export class ProductComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onProductClick() {
+    this.product.Category = new Category({CategoryId: this.product.Category.CategoryId, CategoryName: null, Warehouse: null});
+    this.selectedChange.next(this.product);
+    console.log(this.selected);
   }
 
 }
