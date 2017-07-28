@@ -27,7 +27,9 @@ export class DataService {
   //if id is not 0 - upate existing product in the DB
   saveProduct(product: Product) {
     let headers = new Headers();
-      headers.append('Content-Type', 'application/json');
+    headers.append('Content-Type', 'application/json');
+
+    product.Category.Products = null;
     
     if (product.ProductId === 0) {
       return this.http.post(this.apiURL + 'product', product, {headers: headers})

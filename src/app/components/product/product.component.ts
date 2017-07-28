@@ -19,9 +19,9 @@ export class ProductComponent implements OnInit {
   ngOnInit() {
   }
 
-  onProductClick() {
-    this.product.Category = new Category({CategoryId: this.product.Category.CategoryId, CategoryName: null, Warehouse: null});
-    this.selectedChange.next(this.product);
-  }
+  //onProductClick() {
+  //  this.product.Category = new Category({CategoryId: this.product.Category.CategoryId, CategoryName: null, Warehouse: null});
+  //  this.selectedChange.next(this.product);
+  //}
 
 }

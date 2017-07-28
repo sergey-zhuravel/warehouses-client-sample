@@ -21,13 +21,12 @@ export class Warehouse {
       for (const category of warehouseInfo['Categories']) {
           let newCategory = new Category(Object.assign(category, {Warehouse:{WarehouseId: this.WarehouseId}}));
           
-          let categoryTotalCost = 0;
           //create products
           for (const product of category['Products']) {
-              this.products.push(new Product(Object.assign(product, {Category: category})));
-              categoryTotalCost += product.Store.Price * product.Store.Count;
+              let newProduct = new Product(Object.assign(product, {Category: category}));
+              this.products.push(newProduct);
+              newCategory.Products.push(newProduct);
           }
-          newCategory.TotalCost = categoryTotalCost;
           this.categories.push(newCategory);
           
       }
